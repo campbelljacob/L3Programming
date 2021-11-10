@@ -7,7 +7,7 @@
     <script src="invaderBullet.js"></script>
     <script src="playerBullet.js"></script>
     <!--adds external .js files-->
-</head>
+</head> 
 
 <body>
     <canvas id="gameCanvas" width="500" height="500"></canvas>
@@ -41,6 +41,14 @@
             level = prompt('Please enter a correct level, either easy or hard', 'easy');
             levelCaseCheck = level.toLowerCase();
         }
+
+        // if(difficulty == 'easy'){ //easy
+        //   bulletCount = 20;
+        // }
+        // if(difficulty == 'hard'){ //hard
+        //   bulletCount = 50;
+        // }
+
         //vars
 
         //player vars
@@ -94,12 +102,19 @@
         }
 
         if (level == 'hard') {
-            bulletspeed = 20;
-            eSpeed = 1.5;
+            bulletspeed = 50;
+            eSpeed = 4;
             coolDmod = 800;
  
         }
-        var player = new Player(pXpos, pYpos, P_WIDTH, P_HEIGHT, 'Aqua', pXspeed);
+
+        var playerImg = new Image();
+        playerImg.src = 'images/player.png';
+
+        var enemyImg = new Image();
+        enemyImg.src = 'images/enemy.png';
+
+        var player = new Player(playerImg, pXpos, pYpos, P_WIDTH, P_HEIGHT, 'Aqua', pXspeed);
         var enemyReady = false;  //creates and draws player on canvas
 
         function mainloop() {  // mainloop runs code 50 times per second
@@ -109,10 +124,10 @@
                 colorRect(0, 0, canvas.width, canvas.height, 'black'); //color rect for canvas
 
                 player.move();
-                player.draw();
+                player.drawPlayer();
                 player.hasCollided();
                 makepBullet();
-                makeeBullet();
+                // makeeBullet();
 
 
                 if (player.hasCollided()) {  //ends game is player is hit by bullet or enemy
@@ -158,7 +173,7 @@
 
                 if (enemies.length > 0) {
                     enemies.forEach(function(enemy, i) {
-                        enemy.draw(); //draws enemies
+                        enemy.drawEnemy(); //draws enemies
                     });
 
                     enemyReady = true;
@@ -181,9 +196,9 @@
                     });
                 } //enemies bracket
 
-                canvasContext.fillStyle = '#19E800';
+                canvasContext.fillStyle = 'white';
                 canvasContext.font = '20pt Calibri';
-                canvasContext.fillText('Score:' + score, canvas.width - 100, 30);  //draws current score
+                canvasContext.fillText('Score:' + score, canvas.width - 100, 475);  //draws current score
 
             } //if endgame bracket
             else {
@@ -243,7 +258,7 @@
                     Ymod = 75;
                 }   
                 
-                var e = new Enemy(eXpos, eYpos, eSize, eSize, 'white', eSpeed, eSpeed); //draws enemies
+                var e = new Enemy(enemyImg,eXpos, eYpos, eSize, eSize, eSpeed, eSpeed); //draws enemies
 
                 enemies.push(e);
             }

@@ -1,11 +1,16 @@
 class Enemy { //main constructer for enemies
-    constructor(x, y, w, h, c, Speed) {
+    constructor(src, x, y, w, h, c, Speed) {
+        this.src = src;
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
         this.c = c;
         this.Speed = Speed;
+    }
+    
+    drawEnemy() {
+        canvasContext.drawImage(this.src, this.x, this.y, this.w, this.h);
     }
 
     draw() { //draws enemeis using canvas' color rect

@@ -7,7 +7,7 @@
     <script src="invaderBullet.js"></script>
     <script src="playerBullet.js"></script>
     <!--adds external .js files-->
-</head>
+</head> 
 
 <body>
     <canvas id="gameCanvas" width="500" height="500"></canvas>
@@ -99,7 +99,11 @@
             coolDmod = 800;
  
         }
-        var player = new Player(pXpos, pYpos, P_WIDTH, P_HEIGHT, 'Aqua', pXspeed);
+
+        var playerImg = new Image();
+        playerImg.src = 'images/player.png';
+
+        var player = new Player(playerImg, pXpos, pYpos, P_WIDTH, P_HEIGHT, 'Aqua', pXspeed);
         var enemyReady = false;  //creates and draws player on canvas
 
         function mainloop() {  // mainloop runs code 50 times per second
@@ -109,7 +113,7 @@
                 colorRect(0, 0, canvas.width, canvas.height, 'black'); //color rect for canvas
 
                 player.move();
-                player.draw();
+                player.drawPlayer();
                 player.hasCollided();
                 makepBullet();
                 makeeBullet();
@@ -181,9 +185,9 @@
                     });
                 } //enemies bracket
 
-                canvasContext.fillStyle = '#19E800';
+                canvasContext.fillStyle = '#white';
                 canvasContext.font = '20pt Calibri';
-                canvasContext.fillText('Score:' + score, canvas.width - 100, 30);  //draws current score
+                canvasContext.fillText('Score:' + score, canvas.width - 100, 475);  //draws current score
 
             } //if endgame bracket
             else {

@@ -1,11 +1,16 @@
 class Player {  // vars for building player
-    constructor(x, y, w, h, c, xSpeed) {
+    constructor(src, x, y, w, h, c, xSpeed) {
+        this.src = src;
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
         this.c = c;
         this.xSpeed = xSpeed;
+    }
+
+    drawPlayer() {
+        canvasContext.drawImage(this.src, this.x, this.y, this.w, this.h);
     }
 
     draw() {  // draws player using canvas' colorRect

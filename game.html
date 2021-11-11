@@ -102,7 +102,7 @@
         }
 
         if (level == 'hard') {
-            bulletspeed = 50;
+            bulletspeed = 500;
             eSpeed = 4;
             coolDmod = 800;
  
@@ -127,7 +127,7 @@
                 player.drawPlayer();
                 player.hasCollided();
                 makepBullet();
-                // makeeBullet();
+                makeeBullet();
 
 
                 if (player.hasCollided()) {  //ends game is player is hit by bullet or enemy
@@ -156,7 +156,7 @@
                     ebullets.forEach(function(invaderB, i) {
                         invaderB.draw();
                         invaderB.move();
-
+                        console.log('pew')
                         if (invaderB.outOfBounds()) {
                             delete ebullets[i]; //detects if bullet is out of bounds or hits
                         }
@@ -284,6 +284,7 @@
                 var eBulletYpos = 0;
                 eTime = false;
                 eCooldown();
+                console.log('pew')
 
 
                 var b = new invaderB(eBulletXpos, eBulletYpos, bulletWidth, bulletHeight, 'white', bulletSpeed);

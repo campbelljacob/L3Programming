@@ -1,11 +1,10 @@
 class Enemy { //main constructer for enemies
-    constructor(src, x, y, w, h, c, Speed) {
+    constructor(src, x, y, w, h, Speed) {
         this.src = src;
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.c = c;
         this.Speed = Speed;
     }
     
@@ -23,7 +22,7 @@ class Enemy { //main constructer for enemies
     }
 
     edgeHit() { //if 1 enemy hit the edge all drop down and reverses direction of movement by running drop()
-        return this.x >= canvas.width - this.w || this.x < 0;
+        return this.x + this.w  + 2 >= canvas.width || this.x < 0;
     }
 
     drop() { 
